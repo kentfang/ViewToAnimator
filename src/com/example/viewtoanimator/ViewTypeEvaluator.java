@@ -8,12 +8,6 @@ public class ViewTypeEvaluator implements TypeEvaluator<Viewpoint>{
 	public Viewpoint evaluate(float fraction, Viewpoint startValue, Viewpoint endValue) {
 		
 		float x=0 , y=0 ;
-		Log.d("view", "float:"+fraction);
-		
-		Log.d("view", "startValue:"+startValue.mX);
-		Log.d("view", "startValue:"+startValue.mY);
-		Log.d("view", "endValue:"+endValue.mX);
-		Log.d("view", "endValue:"+endValue.mY);
 		/**
 		 * move
 		 */
@@ -24,8 +18,9 @@ public class ViewTypeEvaluator implements TypeEvaluator<Viewpoint>{
 			
 		}else if(endValue.type==Viewpoint.LINE){
 			
-			x= (endValue.mX - startValue.mX)*(1+fraction);
-			y= (endValue.mY - startValue.mY)*(1+fraction);
+			
+			x = startValue.mX+fraction*(endValue.mX-startValue.mX);
+			y = startValue.mY+fraction*(endValue.mY-startValue.mY);
 			
 		}else if(endValue.type==Viewpoint.CRUVE){
 			
@@ -39,12 +34,8 @@ public class ViewTypeEvaluator implements TypeEvaluator<Viewpoint>{
 					3*endValue.c2y*fraction*fraction*(1-fraction)+
 					endValue.ey*fraction*fraction*fraction;
 		}
-		Log.d("view", "x:"+x);
-		Log.d("view", "y:"+y);
-//		endValue.mX=x;
-//		endValue.mY=y;
 		
-		return Viewpoint.lineTo(x, y);
+		return Viewpoint.moveto(x, y);
 	}
 
 }
