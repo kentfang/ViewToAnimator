@@ -31,13 +31,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		path.moveTo(10f, 10f);
 //		
-//		path.lineTo(100f, 100f);
+		path.lineTo(100f, 100f);
 		
 		
 		path.curveTo(200f, 200f, 300f, 300f, 500f, 500f);
-		path.moveTo(500f, 500f);
-		
-		path.lineTo(100f, 100f);
 		
 		ObjectAnimator ani = ObjectAnimator.ofObject(this, "hehe", evaluator, path.getPoints().toArray());
 		
